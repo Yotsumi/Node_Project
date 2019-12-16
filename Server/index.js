@@ -40,6 +40,12 @@ app.get('/Info', function(req, res){
         info.Host = x.Host
         infos.push(info)
     })
+    config.HostedGames.forEach((x) => {
+        let info = {}
+        info.Name = x.Name
+        info.Host = x.Host
+        infos.push(info)
+    })
     res.send(infos);
 });
 
