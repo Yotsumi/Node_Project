@@ -5,7 +5,7 @@ $(document).ready(() => {
     $.get(Host+'/Info').done(games => {
         games.forEach(game => {
             $('#Menu').append(`
-            <div class="btn-group dropright">
+            <div class="btn-group dropright mt-4">
                 <button type="button" class="GameButton btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${game.Name.replace('_', ' ')}</button>
                 <div class="dropdown-menu" id="${game.Name}Menu"></div>
             </div>
@@ -16,11 +16,10 @@ $(document).ready(() => {
                     $(`#${game.Name}Menu`).append(`
                     <a class="dropdown-item" onclick="NicknameInsert('${game.Host}','${room.Name}')">${room.Name.replace('-', ' ')}<div>${room.Player}/${room.MaxPlayers}</div></a>
                     `)
-                });
-            }).fail(err => {
-                console.log(err)
+                })
+            }).fail(() => {
                 $(`#${game.Name}Menu`).append(`
-                    <a class="dropdown-item" onclick="NicknameInsert('${game.Host}')">Play<div>${room.Player}/${room.MaxPlayers}</div></a>
+                    <a class="dropdown-item" onclick="NicknameInsert('${game.Host}')">Play</a>
                     `)
             })
         })

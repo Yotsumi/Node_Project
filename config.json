@@ -39,5 +39,10 @@
             }
         }
     ],
-    "HostedGames" : [ ]
+    "HostedGames" : [
+        {
+            "Name" : "Asteroid",
+            "Host" : "http://localhost:77"
+        }
+    ]
 }
