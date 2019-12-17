@@ -29,8 +29,10 @@ $.get(Host+'/Info/Config')
         Player_ = new GameObjectClient(0, 0, Scale, Scale);
         Apple_ = new GameObjectClient(0,0,Scale,Scale);
         PowerUp_ = new GameObjectClient(0,0,Scale,Scale);
-        PowerUp_.Color = 'rgb(15, 122, 24)';
-        Apple_.Color = 'rgb(250, 11, 2)';
+        PowerUp_.img = new Image();
+        PowerUp_.img.src = 'Images/question_mark.jpg';
+        Apple_.img = new Image();
+        Apple_.img.src = 'Images/mela.png';
         Player_.Color = 'rgb(116, 52, 235)';
     })
 
@@ -49,6 +51,10 @@ let GameObjectClient = function (x, y, width, height){
         this.ObjConnectedToDraw.forEach(element => {
             element.Draw();
         });
+        if (this.img){
+            ctx.drawImage(this.img, this.Position.x, MapHeight - this.Position.y, this.Width, 0-this.Height);
+            return;
+        }
         ctx.fillStyle = this.Color;
         ctx.fillRect(this.Position.x, MapHeight - this.Position.y, this.Width, 0-this.Height);
     }
