@@ -1,14 +1,1 @@
-[
-    {
-        "Name": "Yotsumi",
-        "Password": "03319f06509ea4c4337f775ad085275665e5f7f471cb7771ff5425a99b40cc70"  
-    } ,
-    {
-        "Name": "Yusdel",
-        "Password": "ed84a7eeec5b8bd7fe593a09b3739ba95d3eaae178ef93f2569cfcd7afeab44d"
-    },
-    {
-        "Name": "Ilaria",
-        "Password": "d8362d37ff725b7ae53e1c5ef8bcbbcd1bc843f64752c37fed536ca34e5a9ceb"
-    }
-]
+[{"Name":"Yotsumi","Password":"03319f06509ea4c4337f775ad085275665e5f7f471cb7771ff5425a99b40cc70"},{"Name":"Yusdel","Password":"ed84a7eeec5b8bd7fe593a09b3739ba95d3eaae178ef93f2569cfcd7afeab44d"},{"Name":"Ilaria","Password":"d8362d37ff725b7ae53e1c5ef8bcbbcd1bc843f64752c37fed536ca34e5a9ceb"},{"Name":"adrian","Password":"7e697cfc60ff048d9a23c7a07d5c84c76290851b01bbe5eb76a56478640289bb"},{"Name":"edo","Password":"f5592a6f7213c9fe4afac0784bf23343954ac31b65256d5ee8bf5258e990e934"},{"Name":"beppe","Password":"9db705b026000df362959c655c7ef9c2c339c09782f6e4a8194552f4b0a864df"},{"Name":"Xblow","Password":"7e697cfc60ff048d9a23c7a07d5c84c76290851b01bbe5eb76a56478640289bb"},{"Name":"adry","Password":"773af7e680c793b8d9d0bd1c6ffb146a031f33c8deab1989579a1b41d59be4d0"}]

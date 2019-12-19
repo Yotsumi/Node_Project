@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 /**
  * Module dependencies.
- * https://www.it-swarm.net/it/javascript/converte-array-di-stringhe-di-oggetti-json-array-di-oggetti-js/1067565978/
  */
 var app = require('../app');
 var debug = require('debug')('snake-app:server');
 var server = require('http').Server(app);
-//var io = require('socket.io')(server);
 
 /**
  * Get port from environment and store in Express.
@@ -229,34 +227,16 @@ function createBullet(x, y, el){
    let rapporto;
    if (cosX < 0) rapporto = -(cosY/cosX);
    else rapporto = cosY/cosX;
-   console.log('Rapporto: ' + rapporto);
    let deltaX, deltaY;
    if (cosX < 0)  deltaX = -1;
    else deltaX = 1;
    deltaY = 1 * rapporto;
-   //console.log(deltaX, deltaY);
-
-
-   /*let angle = calcAngle(x,y,el.x,el.y);
-   console.log("angle: "+angle);
-   let deltaX = Math.sin(-angle);
-   let deltaY = Math.cos(-angle);
-
-   console.log("deltaX: "+deltaX);
-   console.log("deltaY: "+deltaY);*/
 
    const posX = el.x;// + el.radius;
    const posY = el.y;// + el.radius;
-   console.log(deltaX, deltaY)
 
-   //Disabled onclick event on button
-  //console.log(el);
   const bullet = new SpriteBullet(posX, posY, 4, null, '#fff', deltaX, -deltaY);
-  /*
-  console.log(bullet.startAngle);
-  console.log("y: "+Math.sin(bullet.startAngle));
-  console.log("x: "+Math.cos(bullet.startAngle));*/
-  //console.log(angX+ " "+ angY);
+
   bullet.animationType = AnimationType.LINEAR;
   bullet.objectType = ObjectType.BULLET;
   arena.addObject(bullet);
@@ -267,11 +247,9 @@ function createPlayer(idClient){
   const cy = getRandomNumber(100,450);
 
   const radius = 15;
-  //aggiungo un cerchio VIOLA controllato dai tasti WDSA
   const velRight = 3;  // deve essere un numero positivo
   const player = new SpritePlayer(cx, cy, 20, null, '#fff', velRight, velRight, idClient);
-  //cambio il tipo di animazione
-  //player.animationType = AnimationType.KEYBOARD_RIGHT;
+
   arena.addObject(player);
   playersGaming.push(player);
 }
@@ -285,22 +263,12 @@ function Destroyer(){
 
   uniq = [];
   delElement = [];
-  /*
-  var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-
-  for( var i = 0; i < arr.length; i++){
-     if ( arr[i] === 5) {
-       arr.splice(i, 1);
-     }
-  }
-
-  //=> [1, 2, 3, 4, 6, 7, 8, 9, 0]
-  */
+  
 }
 function DestroyerBullet(el){
   arena.gameObjects.splice(el,1);
 }
-//to Delete duplicate of Array Collided (only NUM and String NO Objects Array)
+
 function DeleteDuplicate(array){
     return array.sort().filter(function(item, pos, ary) {
         return !pos || item != ary[pos - 1];
@@ -394,14 +362,6 @@ if (rect1.x + rect1.w/2 >= rect2.x &&
       rect2.Y += rect2.deltaY / 2;
   }
 
-// filling in the values =>
-// example
-/*if (5 < 30 &&
-    55 > 20 &&
-    5 < 20 &&
-    55 > 10) {
-    // collision detected!
-}*/
 }
 function ColliderMix(circle, rect){
   /*
@@ -456,11 +416,6 @@ function ColliderMix(circle, rect){
    }
    else {/*Do Nothing*/ return false;}
 
-  /*
-   * change color of object example
-   * if (hit) { fill(255,150,0); }
-   *
-   */
 }
 
 function Collision() {
@@ -510,7 +465,6 @@ function Collision() {
         bulDel++;
       //end switch
     })
-    //DestroyerBullet();
 
     /*
      * verifico la collisione tra oggetti
@@ -559,15 +513,6 @@ function Collision() {
   /*
    * end object collision controll
    */
-
-   /*
-    * ex: Array#some
-    * [1, 2, 3].some(function(el) {
-    * console.log(el);
-    * return el === 2;
-    * });
-    * ritorna false al verificarsi della condizione
-    */
 
 /**************END GAME VARIABLES OBJECT FUNCTIONS******************************/
 
@@ -620,9 +565,12 @@ io.on('connection', function (socket) {
    */
 
   socket.on('disconnect',function(){
-    const delClient = (el) => {el.idClient == socket.id};
-    let index = arena.gameObjects.findIndex(delClient)
-    arena.gameObjects.splice(index,1);
+    let i = 0;
+    try{
+      while(arena.gameObjects[i].idClient!=socket.id)
+      {i++;}
+      arena.gameObjects.splice(i,1)
+    }catch(e){console.log(e)}
   })
 
 });

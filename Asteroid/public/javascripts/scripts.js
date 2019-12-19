@@ -199,7 +199,6 @@ $(document).ready(function(){
 
       //invio al server il tasto premuto
       socket.emit('keyPressed', event.keyCode);
-      console.log(event.keyCode);
     };
     document.addEventListener('keydown', keysHundler);
     document.addEventListener('keyup', keysHundler);
@@ -210,7 +209,6 @@ $(document).ready(function(){
     //STEP 1 - (0 in Server)
     socket.on('Welcome', (data) => {
       Object.assign(arena, data);
-      console.log(arena.gameObjects);
       if(arena.gameObjects.length == 0){socket.emit('First_Client')}
     })
 
